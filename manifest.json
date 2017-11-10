@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Stinkedin",
+  "description": "Bulk remove connections",
+  "version": "0.0.1",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+      "hot-reload.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "js": ["content-script.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "https://*.linkedin.com/*",
+    "tabs"
+  ]
+}
