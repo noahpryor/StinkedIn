@@ -11,7 +11,8 @@
   "content_scripts": [
     {
       "matches": ["https://www.linkedin.com/*"],
-      "js": ["content-script.js"]
+      "js": ["content-script.js"],
+      "run_at": "document_end"
     }
   ],
   "permissions": [
