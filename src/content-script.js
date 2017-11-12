@@ -30,7 +30,7 @@ let createRemoveAllSharedConnectionsButton = shortName => {
   button.setAttribute("title", "Remove all shared connections");
   button.setAttribute(
     "class",
-    "mn-person-info__shared-insights-btn text-align-left Sans-13px-black-55%"
+    "mn-person-info__shared-insights-btn  Sans-13px-black-55%"
   );
   button.setAttribute("shortname", shortName);
 
@@ -65,17 +65,17 @@ let onFlushConnections = event => {
 
 // Add a remove all connections button the person display
 function addRemoveAllButton(element, linkSelector, buttonLocation) {
-  const profileUrl = element.querySelector(linkSelector).href;
-  const shortName = profileUrlToShortName(profileUrl);
+  const shortName = profileUrlToShortName(element.querySelector('a[href^="/in/"]').href)
   const flushButton = createRemoveAllSharedConnectionsButton(shortName);
   element.querySelector(buttonLocation).append(flushButton);
 }
 
 const addListenerToSelector = (personSelectors) => {
-  document.arrive(personSelectors.container, function() {
-      addRemoveAllButton(this, personSelectors.details, personSelectors.buttonContainer)
+  document.arrive(".mn-person-info__shared-insights", function() {
+      const summaryElement = this.closest(".ember-view")
+      addRemoveAllButton(summaryElement, personSelectors.details, ".mn-person-info__shared-insights")
   })
 }
 
-addListenerToSelector(selectors.invitations)
+// addListenerToSelector(selectors.invitations)
 addListenerToSelector(selectors.peopleYouMayKnow)
